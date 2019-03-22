@@ -21,17 +21,19 @@ $resultado = mysql_query($sentencia, $iden);
 if(!$resultado) 
  die("Error: no se pudo realizar la consulta");
  
-echo '<table>'; 
-echo '<th>' . 'Nombre' . '</th><th>' . 'Nombre_Cientifico' . '</th><th>' . 'Esperanza_Vida' . '</th>'; 
+//echo '<table>'; 
+//echo '<th>' . 'Nombre' . '</th><th>' . 'Nombre_Cientifico' . '</th><th>' . 'Esperanza_Vida' . '</th>'; 
+$array = [];
 while($fila = mysql_fetch_assoc($resultado)) 
 { 
- echo '<tr>'; 
+ /*echo '<tr>'; 
  echo '<td>' . $fila['Nombre'] . '</td><td>' . $fila['Nombre_Cientifico'] . '</td><td>' . $fila['Esperanza_Vida'] . '</td>'; 
- echo '</tr>'; 
+ echo '</tr>'; */
  $miArray = array("Nombre"=>$fila['Nombre'], "Nombre Cientifico"=>$fila['Nombre_Cientifico'], "Esperanza Vida"=>$fila['Esperanza_Vida']);
-print_r(json_encode($miArray));
- 
+//print_r(json_encode($miArray));
+ array_push($array , $miArray);
 } 
+echo(json_encode($array));
 echo '</table>';
 
 // Libera la memoria del resultado
